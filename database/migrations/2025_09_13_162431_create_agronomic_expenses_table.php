@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('preparations', function (Blueprint $table) {
+        Schema::create('agronomic_expenses', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("type_preparation");
-            $table->date("star_date");
-            $table->date("end_date");
-            $table->string("equipment_used");
-            $table->integer("labor_hours");
-            $table->decimal("cost",10, 3);
+            $table->string("expense_type");
+            $table->text("description");
+
+            $table->integer("preparation_id")->unsigned();
+            $table->foreign("preparation_id")->references("id")->on("preparations")->onDelete("cascade")->onUpdate("cascade");
+
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('preparations');
+        Schema::dropIfExists('agronomic_expenses');
     }
 };
