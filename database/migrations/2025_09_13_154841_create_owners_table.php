@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer("telephone")->unique();
             $table->string("email")->unique()-> nullable();
             $table->string("address")->nullable();
-            $table->string("ownerscol");
             $table->timestamps();
         });
     }
