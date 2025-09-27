@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Owner extends Model
 {
     use HasFactory;
+
+    protected $table = 'owners';
+    protected $primaryKey = 'owner_id';
+
+    protected $fillable = [
+        'name',
+        'last_name',
+        'identification_card',
+        'telephone',
+        'email',
+        'address'
+    ];
 }
