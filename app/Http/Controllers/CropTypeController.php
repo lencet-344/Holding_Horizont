@@ -2,100 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CropType; // Modelo principal para tipos de cultivo
-use Illuminate\Http\Request;
+use App\Models\Crop_type; // <-- ¡Corregido para coincidir con tu modelo!
+use App\Http\Requests\Crop_typeRequest; 
+use Illuminate\Http\Request; // Importación base por si acaso
 
 class CropTypeController extends Controller
 {
     /**
-     * Muestra una lista de todos los tipos de cultivo (función R - Read/Leer).
+     * Muestra una lista de todos los tipos de cultivo.
      */
     public function index()
     {
-        // Traemos todos los tipos de cultivo
-        $cropTypes = CropType::latest()->get(); 
-
-        // Retorna la vista 'crop_types.index'
+        $cropTypes = Crop_type::latest()->get();
         return view('crop_types.index', compact('cropTypes'));
     }
 
     /**
-     * Muestra el formulario para crear un nuevo tipo de cultivo (función C - Create/Crear).
+     * Muestra el formulario para crear un nuevo tipo de cultivo.
      */
     public function create()
     {
-        // Retorna la vista 'crop_types.create'
         return view('crop_types.create');
     }
 
     /**
-     * Guarda un nuevo tipo de cultivo en la base de datos (función C - Create/Crear).
+     * Guarda un nuevo tipo de cultivo en la base de datos.
      */
-    public function store(Request $request)
+    public function store(Crop_typeRequest $request)
     {
-        // 1. Validación de datos
-        $request->validate([
-            'name' => 'required|string|max:255|unique:crop_types,name', // Aseguramos que el nombre sea único
-            'description' => 'nullable|string',
-            'estimated_days_to_harvest' => 'nullable|integer|min:1',
-        ]);
+        // La validación se hace automáticamente por Crop_typeRequest
+        Crop_type::create($request->validated());
 
-        // 2. Creación del registro
-        CropType::create($request->all());
-
-        // 3. Redireccionar con éxito
         return redirect()->route('crop_types.index')
-                         ->with('success', '¡Tipo de cultivo registrado con éxito!');
+                         ->with('success', 'Tipo de cultivo registrado con éxito.');
     }
 
     /**
-     * Muestra los detalles de un tipo de cultivo específico (función R - Read/Leer).
+     * Muestra los detalles de un tipo de cultivo específico.
      */
-    public function show(CropType $cropType)
+    public function show(Crop_type $cropType) // <-- Usando Crop_type en el type-hint
     {
-        // Retorna la vista 'crop_types.show'
         return view('crop_types.show', compact('cropType'));
     }
 
     /**
-     * Muestra el formulario para editar un tipo de cultivo (función U - Update/Actualizar).
+     * Muestra el formulario para editar un tipo de cultivo.
      */
-    public function edit(CropType $cropType)
+    public function edit(Crop_type $cropType) // <-- Usando Crop_type en el type-hint
     {
-        // Retorna la vista 'crop_types.edit'
         return view('crop_types.edit', compact('cropType'));
     }
 
     /**
-     * Actualiza un tipo de cultivo en la base de datos (función U - Update/Actualizar).
+     * Actualiza un tipo de cultivo en la base de datos.
      */
-    public function update(Request $request, CropType $cropType)
+    public function update(Crop_typeRequest $request, Crop_type $cropType) // <-- Usando Crop_type en el type-hint
     {
-        // 1. Validación de datos
-        $request->validate([
-            'name' => 'required|string|max:255|unique:crop_types,name,' . $cropType->id, // Debe ser único, excepto para el registro actual
-            'description' => 'nullable|string',
-            'estimated_days_to_harvest' => 'nullable|integer|min:1',
-        ]);
+        // La validación se hace automáticamente por Crop_typeRequest
+        $cropType->update($request->validated());
 
-        // 2. Actualización del registro
-        $cropType->update($request->all());
-
-        // 3. Redireccionar con éxito
         return redirect()->route('crop_types.index')
-                         ->with('success', 'El tipo de cultivo ha sido actualizado correctamente.');
+                         ->with('success', 'Tipo de cultivo actualizado correctamente.');
     }
 
     /**
-     * Elimina un tipo de cultivo de la base de datos (función D - Delete/Borrar).
+     * Elimina un tipo de cultivo de la base de datos.
      */
-    public function destroy(CropType $cropType)
+    public function destroy(Crop_type $cropType) // <-- Usando Crop_type en el type-hint
     {
-        // 1. Eliminación del registro
         $cropType->delete();
-
-        // 2. Redireccionar con éxito
         return redirect()->route('crop_types.index')
-                         ->with('success', 'El tipo de cultivo ha sido eliminado del registro.');
+                         ->with('success', 'Tipo de cultivo eliminado del registro.');
     }
 }

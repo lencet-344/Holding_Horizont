@@ -2,101 +2,81 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Crop; 
-use Illuminate\Http\Request;
+use App\Models\Crop;
+use App\Models\Area;
+use App\Models\Crop_type;
+use App\Http\Requests\CropRequest; // Usando el Form Request
 
 class CropController extends Controller
 {
     /**
-     *
+     * Muestra una lista de todos los cultivos.
      */
     public function index()
     {
-        // Trae todos los cultivos (puedes añadir paginación si la lista es muy larga)
-        $crops = Crop::all(); 
-
-        
+        // Trae cultivos, cargando el área y el tipo de cultivo relacionados
+        $crops = Crop::with(['area', 'cropType'])->latest()->get(); 
         return view('crops.index', compact('crops'));
     }
 
     /**
-     * Muestra el formulario para crear un nuevo cultivo (función C - Create/Crear).
+     * Muestra el formulario para crear un nuevo cultivo.
      */
     public function create()
     {
-        // Retorna la vista del formulario
-        return view('crops.create');
+        $areas = Area::all();
+        $cropTypes = Crop_type::all();
+        return view('crops.create', compact('areas', 'cropTypes'));
     }
 
     /**
-     * Guarda un nuevo cultivo en la base de datos (función C - Create/Crear).
+     * Guarda un nuevo cultivo en la base de datos.
      */
-    public function store(Request $request)
+    public function store(CropRequest $request) // Usamos CropRequest para validación
     {
-        // 1. Validación de datos antes de guardar
-        $request->validate([
-            'area_id' => 'required|exists:areas,id',
-            'crop_type_id' => 'required|exists:crop_types,id',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after:start_date', // El campo es opcional
-        ]);
+        // La validación se hace automáticamente por CropRequest
+        Crop::create($request->validated()); 
 
-        // 2. Creación del registro en la base de datos
-        Crop::create($request->all());
-
-        // 3. Redireccionar al listado con un mensaje de éxito
         return redirect()->route('crops.index')
-                         ->with('success', '¡El nuevo cultivo ha sido sembrado con éxito!');
+                         ->with('success', '¡Cultivo registrado con éxito!');
     }
 
     /**
-     * Muestra los detalles de un cultivo específico (función R - Read/Leer).
+     * Muestra los detalles de un cultivo específico.
      */
     public function show(Crop $crop)
     {
-        // Retorna la vista 'crops.show' y le pasa el objeto 'crop'
         return view('crops.show', compact('crop'));
     }
 
     /**
-     * Muestra el formulario para editar un cultivo (función U - Update/Actualizar).
+     * Muestra el formulario para editar un cultivo.
      */
     public function edit(Crop $crop)
     {
-        // Retorna la vista 'crops.edit' y le pasa el objeto 'crop'
-        return view('crops.edit', compact('crop'));
+        $areas = Area::all();
+        $cropTypes = Crop_type::all();
+        return view('crops.edit', compact('crop', 'areas', 'cropTypes'));
     }
 
     /**
-     * Actualiza un cultivo en la base de datos (función U - Update/Actualizar).
+     * Actualiza un cultivo en la base de datos.
      */
-    public function update(Request $request, Crop $crop)
+    public function update(CropRequest $request, Crop $crop) // Usamos CropRequest para validación
     {
-        // 1. Validación de datos
-        $request->validate([
-            'area_id' => 'required|exists:areas,id',
-            'crop_type_id' => 'required|exists:crop_types,id',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after:start_date',
-        ]);
+        // La validación se hace automáticamente por CropRequest
+        $crop->update($request->validated()); 
 
-        // 2. Actualización del registro
-        $crop->update($request->all());
-
-        // 3. Redireccionar con mensaje de éxito
         return redirect()->route('crops.index')
                          ->with('success', 'El cultivo ha sido actualizado correctamente.');
     }
 
     /**
-     * Elimina un cultivo de la base de datos (función D - Delete/Borrar).
+     * Elimina un cultivo de la base de datos.
      */
     public function destroy(Crop $crop)
     {
-        // 1. Eliminación del registro
         $crop->delete();
-
-        // 2. Redireccionar con mensaje de éxito
         return redirect()->route('crops.index')
                          ->with('success', 'El cultivo ha sido eliminado del registro.');
     }

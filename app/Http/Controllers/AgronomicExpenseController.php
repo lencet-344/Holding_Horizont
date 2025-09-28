@@ -2,112 +2,81 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AgronomicExpense; // Modelo principal de gastos
-use App\Models\Sowing; // Para vincular el gasto a una siembra
-use Illuminate\Http\Request;
+use App\Models\Agronomic_expense; 
+use App\Models\Sowing; 
+use App\Http\Requests\Agronomic_expenseRequest; // Usando el Form Request
 
 class AgronomicExpenseController extends Controller
 {
     /**
-     * Muestra una lista de todos los gastos agronómicos (función R - Read/Leer).
+     * Muestra una lista de todos los gastos agronómicos.
      */
     public function index()
     {
         // Trae todos los gastos, cargando la siembra relacionada
-        $expenses = AgronomicExpense::with('sowing')->latest()->get(); 
-
-        // Retorna la vista 'agronomic_expenses.index'
+        $expenses = Agronomic_expense::with('sowing')->latest()->get(); 
         return view('agronomic_expenses.index', compact('expenses'));
     }
 
     /**
-     * Muestra el formulario para crear un nuevo gasto (función C - Create/Crear).
+     * Muestra el formulario para crear un nuevo gasto.
      */
     public function create()
     {
         // Traemos todas las siembras para seleccionar a cuál pertenece el gasto
         $sowings = Sowing::all();
-
-        // Retorna la vista 'agronomic_expenses.create'
         return view('agronomic_expenses.create', compact('sowings'));
     }
 
     /**
-     * Guarda un nuevo gasto en la base de datos (función C - Create/Crear).
+     * Guarda un nuevo gasto en la base de datos.
      */
-    public function store(Request $request)
+    public function store(Agronomic_expenseRequest $request) // Usamos AgronomicExpenseRequest para validación
     {
-        // 1. Validación de datos
-        $request->validate([
-            'sowing_id' => 'required|exists:sowings,id',
-            'expense_type' => 'required|string|max:100', // Ej: Semillas, Fertilizante, Labor
-            'activity_type' => 'required|string|max:100', // Ej: Siembra, Riego, Cosecha
-            'amount' => 'required|numeric|min:0',
-            'date' => 'required|date',
-        ]);
+        // La validación se hace automáticamente por AgronomicExpenseRequest
+        Agronomic_expense::create($request->validated());
 
-        // 2. Creación del registro
-        AgronomicExpense::create($request->all());
-
-        // 3. Redireccionar con éxito
         return redirect()->route('agronomic_expenses.index')
                          ->with('success', '¡Gasto agronómico registrado con éxito!');
     }
 
     /**
-     * Muestra los detalles de un gasto específico (función R - Read/Leer).
+     * Muestra los detalles de un gasto específico.
      */
-    public function show(AgronomicExpense $expense)
+    public function show(Agronomic_expense $expense)
     {
-        // Retorna la vista 'agronomic_expenses.show'
         return view('agronomic_expenses.show', compact('expense'));
     }
 
     /**
-     * Muestra el formulario para editar un gasto (función U - Update/Actualizar).
+     * Muestra el formulario para editar un gasto.
      */
-    public function edit(AgronomicExpense $expense)
+    public function edit(Agronomic_expense $expense)
     {
         // Traemos las siembras para el formulario de edición
         $sowings = Sowing::all(); 
-        
-        // Retorna la vista 'agronomic_expenses.edit'
         return view('agronomic_expenses.edit', compact('expense', 'sowings'));
     }
 
     /**
-     * Actualiza un gasto en la base de datos (función U - Update/Actualizar).
+     * Actualiza un gasto en la base de datos.
      */
-    public function update(Request $request, AgronomicExpense $expense)
+    public function update(Agronomic_expenseRequest $request, Agronomic_expense $expense) // Usamos AgronomicExpenseRequest para validación
     {
-        // 1. Validación de datos
-        $request->validate([
-            'sowing_id' => 'required|exists:sowings,id',
-            'expense_type' => 'required|string|max:100',
-            'activity_type' => 'required|string|max:100',
-            'amount' => 'required|numeric|min:0',
-            'date' => 'required|date',
-        ]);
+        // La validación se hace automáticamente por AgronomicExpenseRequest
+        $expense->update($request->validated());
 
-        // 2. Actualización del registro
-        $expense->update($request->all());
-
-        // 3. Redireccionar con éxito
         return redirect()->route('agronomic_expenses.index')
                          ->with('success', 'El gasto ha sido actualizado correctamente.');
     }
 
     /**
-     * Elimina un gasto de la base de datos (función D - Delete/Borrar).
+     * Elimina un gasto de la base de datos.
      */
-    public function destroy(AgronomicExpense $expense)
+    public function destroy(Agronomic_expense $expense)
     {
-        // 1. Eliminación del registro
         $expense->delete();
-
-        // 2. Redireccionar con éxito
         return redirect()->route('agronomic_expenses.index')
                          ->with('success', 'El gasto ha sido eliminado del registro.');
     }
-
 }
