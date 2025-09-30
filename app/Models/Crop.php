@@ -4,45 +4,47 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Crop extends Model
 {
     use HasFactory;
-    protected $table = 'crops';
-    protected $primaryKey = 'crop_id';
 
+    // Campos que se pueden asignar masivamente
     protected $fillable = [
-        'crop_name',
-        'variety',
+        'name',
         'planting_date',
-        'harvest_date',
-        'area_size',
-        'growth_stage',
-        'quantity'
+        'area_id',
+        'crop_type_id',
+        'expected_yield',
     ];
 
-    public function areas()
+    /**
+     * Relación: Un Cultivo pertenece a un Tipo de Cultivo.
+     * Usamos el nombre 'Crop_type' que identificamos en tu sistema.
+     */
+    public function crop_type_name(): BelongsTo
     {
-        return $this->belongsTo(Area::class, 'area_id');
-    }
-
-    public function crop_types()
-    {
+        // Asegura que se usa el modelo con el nombre correcto de tu sistema
         return $this->belongsTo(Crop_type::class, 'crop_type_id');
     }
 
-    public function preparations()
+    /**
+     * Relación: Un Cultivo pertenece a un Área (Finca/Lote).
+     */
+    public function area_name(): BelongsTo
     {
-        return $this->hasMany(Preparation::class, 'crop_id');
+        // 'area_id' es la clave foránea en la tabla 'crops'
+        return $this->belongsTo(Area::class, 'area_id');
     }
 
-    public function sowings()
+    // Puedes añadir más relaciones si el controlador las necesita, por ejemplo,
+    // si un Cultivo tiene muchas Siembra:
+    /*
+    public function sowings(): HasMany
     {
-        return $this->hasMany(Sowing::class, ' crop_id');
+        return $this->hasMany(Sowing::class, 'crop_id');
     }
-
-    public function  harvests()
-    {
-        return $this->hasMany(Harvest::class, 'crop_id');
-    }
+    */
 }
+

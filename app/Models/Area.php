@@ -4,30 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Area extends Model
 {
     use HasFactory;
-    protected $table = 'areas';
-    protected $primaryKey = 'area_id';
 
+    // Campos que se pueden asignar masivamente
     protected $fillable = [
         'name',
-        'location',
-        'description'
+        'farm_id',
     ];
-    public function farms()
-    {
-        $this->belongsTo(Farm::class, 'farm_id');
-    }
 
-    public function crops()
+    // Relación: Un Área puede tener muchos Cultivos
+    public function crops(): HasMany
     {
+        // 'area_id' es la clave foránea en la tabla 'crops'
         return $this->hasMany(Crop::class, 'area_id');
     }
 
-    public function employees()
+    // Si también tienes un modelo Farm (Finca), la relación sería:
+    /*
+    public function farm(): BelongsTo
     {
-        return $this->hasMany(Employee::class, 'area_id');
+        return $this->belongsTo(Farm::class, 'farm_id');
     }
+    */
 }
