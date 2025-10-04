@@ -39,9 +39,7 @@
                                         {{ $crop_type->description }}
                                     </td>
 
-                                    <td>
-                                        {{ $crop_type->created_at }}
-                                    </td>
+                        
                                     <td style="white-space: nowrap; display: flex; align-items: center;">
                                         <a href="{{ route('crop_types.show', $crop_type) }}" class="btn btn-primary btn-sm btn-mostrar"
                                             style="margin-right: 5px;">

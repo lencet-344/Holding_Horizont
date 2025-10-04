@@ -44,9 +44,7 @@
                                         {{ $area->location }}
                                     </td>
 
-                                    <td>
-                                        {{ $area->created_at }}
-                                    </td>
+                                    
                                     <td style="white-space: nowrap; display: flex; align-items: center;">
                                         <a href="{{ route('areas.show', $area) }}" class="btn btn-primary btn-sm btn-mostrar"
                                             style="margin-right: 5px;">

@@ -39,9 +39,7 @@
                                         {{ $agronomic_expense->description }}
                                     </td>
 
-                                    <td>
-                                        {{ $agronomic_expense->created_at }}
-                                    </td>
+                                    
                                     <td style="white-space: nowrap; display: flex; align-items: center;">
                                         <a href="{{ route('agronomic_expenses.show', $agronomic_expense) }}" class="btn btn-primary btn-sm btn-mostrar"
                                             style="margin-right: 5px;">

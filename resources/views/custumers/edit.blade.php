@@ -1,18 +1,28 @@
-@extends('layouts.app') 
+@extends('layouts.panel')
+@section('title', 'Custumer/Update')
 
 @section('content')
-<div class="container">
-    <h1>Editar Cliente: {{ $customer->name }} {{ $customer->last_name }}</h1>
-
-    <form action="{{ route('customers.update', $customer) }}" method="POST">
-        @csrf
-        @method('PUT') 
-        
-        {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE y le pasamos la variable $customer --}}
-        @include('customers._form', ['customer' => $customer]) 
-
-        <button type="submit" class="btn btn-warning">Actualizar Cliente</button>
-        <a href="{{ route('customers.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+    <div class="col-xl-12 order-xl-1">
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><i class="fas fa-plus-circle"></i> Actualizar Clientes</h3>
+                    </div>
+                    <div class="col-4 text-right button-show">
+                        <a href="{{ route('custumers.index') }}" class="btn btn-sm btn-primary btn-show btn-mostrar"><i
+                                class="fas fa-arrow-left"></i>
+                            Volver</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body container-fluid">
+                <form action="{{ route('custumers.update', $custumers->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    @include('custumers.form')
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
