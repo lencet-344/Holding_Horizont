@@ -1,54 +1,72 @@
-@extends('layouts.app') 
+@extends('layouts.panel')
+@section('title', 'Agronomic_expense')
 
 @section('content')
-<div class="container">
-    <h1>Listado de Gastos Agronómicos</h1>
+    <div class="row">
+        <div class="col col-table">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">Gastos Agronomicos</h3>
+                        <a href="{{ route('students.create') }}" class="btn btn-index">
+                            <i class="fas fa-plus"></i> Agregar nuevo Gasto agronomico
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive RESPONSIVE-TABLE">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col"><i class="fas fa-id-card"></i> ID</th>
+                                <th scope="col"><i class="fas fa-user-circle"></i> Nombre completo</th>
+                                <th scope="col"><i class="fas fa-user-alt"></i> Edad</th>
+                                <th scope="col"><i class="fas fa-portrait"></i> Genero</th>
+                                <th scope="col"><i class="fas fa-map"></i> Direccion</th>
+                                <th scope="col"><i class="fas fa-phone"></i> Numero de Telefono</th>
+                                <th scope="col"><i class="fas fa-envelope-square"></i> Correo Electronico</th>
+                                <th scope="col"><i class="fas fa-calendar-check"></i> Fecha de Registro</th>
+                                <th scope="col"><i class="fas fa-cogs"></i> Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($agronomic_expenses as $agronomic_expense)
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-pill badge-primary"> {{ $agronomic_expense->id }} </span>
+                                    </td>
 
-    {{-- Botón para ir a la vista de creación --}}
-    <a href="{{ route('agronomic_expenses.create') }}" class="btn btn-primary mb-3">
-        Registrar Nuevo Gasto
-    </a>
+                                    <td>
+                                        {{ $agronomic_expense->expense_type }}
+                                    </td>
 
-    @if ($expenses->count())
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tipo de Gasto</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($expenses as $expense)
-                    <tr>
-                        <td>{{ $expense->agronomic_expense_id }}</td>
-                        <td>{{ $expense->expense_type }}</td>
-                        <td>{{ $expense->description }}</td>
-                        <td>
-                            {{-- Enlace para ver el detalle (Show) --}}
-                            <a href="{{ route('agronomic_expenses.show', $expense) }}" class="btn btn-info btn-sm">Ver</a>
-                            
-                            {{-- Enlace para editar --}}
-                            <a href="{{ route('agronomic_expenses.edit', $expense) }}" class="btn btn-warning btn-sm">Editar</a>
-                            
-                            {{-- Formulario para eliminar (Destroy) --}}
-                            <form action="{{ route('agronomic_expenses.destroy', $expense) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este gasto?')">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                                    <td>
+                                        {{ $agronomic_expense->description }}
+                                    </td>
 
-        {{-- Muestra enlaces de paginación si el controlador los envía --}}
-        {{-- {{ $expenses->links() }} --}}
-
-    @else
-        <p class="alert alert-info">No hay gastos agronómicos registrados.</p>
-    @endif
-</div>
+                                    <td>
+                                        {{ $student->created_at }}
+                                    </td>
+                                    <td style="white-space: nowrap; display: flex; align-items: center;">
+                                        <a href="{{ route('agronomic_expenses.show', $agronomic_expense) }}" class="btn btn-primary btn-sm btn-mostrar"
+                                            style="margin-right: 5px;">
+                                            <i class="fas fa-eye"></i> Mostrar
+                                        </a>
+                                        <a href="{{ route('agronomic_expenses.edit', $agronomic_expense) }}" class="btn btn-info btn-sm"
+                                            style="margin-right: 5px;">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer py-4">
+                    <nav aria-label="..." class="d-flex flex-wrap justify-content-center justify-content-lg-start">
+                        {{ $students->links() }}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

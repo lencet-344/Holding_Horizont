@@ -1,35 +1,46 @@
-@extends('layouts.app') 
+@extends('layouts.panel')
+@section('title', 'Agronomic_expense/Show')
 
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h1>Detalle del Gasto Agronómico: {{ $expense->expense_type }}</h1>
-        </div>
-        <div class="card-body">
-            
-            <p><strong>ID:</strong> {{ $expense->agronomic_expense_id }}</p>
-            <hr>
-            
-            <p><strong>Tipo de Gasto:</strong> {{ $expense->expense_type }}</p>
-            <hr>
-            
-            <p><strong>Descripción:</strong></p>
-            <p class="card-text">{{ $expense->description }}</p>
-            <hr>
-            
-            {{-- Puedes añadir más campos aquí, como fechas de creación/actualización --}}
-            <p class="text-muted small">Creado: {{ $expense->created_at->format('d/m/Y H:i') }}</p>
-            <p class="text-muted small">Última Actualización: {{ $expense->updated_at->format('d/m/Y H:i') }}</p>
+    <div class="col-xl-12 order-xl-1 show-con">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><i class="fas fa-newspaper"></i> Ver Gastos Agronomicos</h3>
+                    </div>
+                    <div class="col-4 button-show text-right">
+                        <a href="{{ route('agronomic_expenses.index') }}" class="btn btn-sm btn-show btn-primary btn-mostrar"><i class=" "></i>
+                            Volver</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">Información del Gastos Agronomicos</h6>
+                <div class="pl-lg-4">
+                    <div class="row row-show">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="expense_type"><i class="fas fa-user-circle"></i>
+                                    Tipo de Gasto</label>
+                                <p>{{ $agronomic_expenses->expense_type }}</p>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>
-        <div class="card-footer">
-            {{-- Enlace para editar --}}
-            <a href="{{ route('agronomic_expenses.edit', $expense) }}" class="btn btn-warning">Editar</a>
-            
-            {{-- Enlace para volver a la lista --}}
-            <a href="{{ route('agronomic_expenses.index') }}" class="btn btn-secondary">Volver al Listado</a>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="description"><i class="fas fa-user-alt"></i>
+                                    Descripcion</label>
+                                <p>{{ $agronomic_expenses->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
         </div>
     </div>
-</div>
 @endsection
