@@ -1,30 +1,45 @@
-@extends('layouts.app') 
+@extends('layouts.panel')
+@section('title', 'Crop_type/Show')
 
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h1>Detalle de Tipo de Cultivo: {{ $cropType->name }}</h1>
-        </div>
-        <div class="card-body">
-            
-            <p><strong>ID:</strong> {{ $cropType->crop_type_id }}</p>
-            <hr>
-            
-            <p><strong>Nombre:</strong> {{ $cropType->name }}</p>
-            <hr>
-            
-            <p><strong>Descripción:</strong></p>
-            <p>{{ $cropType->description }}</p>
-            <hr>
-            
-            <p class="text-muted small">Creado: {{ $cropType->created_at->format('d/m/Y H:i') }}</p>
+    <div class="col-xl-12 order-xl-1 show-con">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><i class="fas fa-newspaper"></i> Ver Tipo de Cultivo</h3>
+                    </div>
+                    <div class="col-4 button-show text-right">
+                        <a href="{{ route('crop_types.index') }}" class="btn btn-sm btn-show btn-primary btn-mostrar"><i class=" "></i>
+                            Volver</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">Información del Tipo de cultivo</h6>
+                <div class="pl-lg-4">
+                    <div class="row row-show">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="name"><i class="fas fa-user-circle"></i>
+                                    Nombre</label>
+                                <p>{{ $crop_types->name }}</p>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>
-        <div class="card-footer">
-            <a href="{{ route('crop_types.edit', $cropType) }}" class="btn btn-warning">Editar</a>
-            <a href="{{ route('crop_types.index') }}" class="btn btn-secondary">Volver al Listado</a>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="description"><i class="fas fa-user-alt"></i>
+                                    Descripcion</label>
+                                <p>{{ $crop_types->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-</div>
 @endsection

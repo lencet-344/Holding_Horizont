@@ -1,31 +1,23 @@
-{{-- ASUNCIÓN: La variable pasada al parcial es $cropType (singular) --}}
+<h6 class="heading-small text-muted mb-4">Datos de Tipos de Cultivo</h6>
+<div class="pl-lg-4 card-body-form">
+    <div class="row container-table">
+        {{-- <div class="col-lg-6"> --}}
+            <div class="form-group">
+                <label class="form-control-label" for="names">Nombre</label>
+                <input type="text" id="name" name="name" class="form-control form-control-alternative input-form"
+                    placeholder="Agregar nombre" value="{{ old('name', $crop_types->name) }}">
+            </div>
 
-{{-- Campo: name (Nombre del Tipo de Cultivo) --}}
-<div class="mb-3">
-    <label for="name" class="form-label">Nombre del Tipo de Cultivo</label>
-    <input type="text" 
-           class="form-control @error('name') is-invalid @enderror" 
-           id="name" 
-           name="name" 
-           value="{{ old('name', $cropType->name ?? '') }}" 
-           required>
-    @error('name')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
-</div>
+            <div class="form-group">
+                <label class="form-control-label" for="description">Descripcion</label>
+                <input type="text" id="description" name="description" class="form-control form-control-alternative input-form"
+                    placeholder="Agregar una Descripcion" value="{{ old('description', $crop_types->description) }}">
+            </div>
 
-{{-- Campo: description (Descripción) --}}
-<div class="mb-3">
-    <label for="description" class="form-label">Descripción</label>
-    <textarea class="form-control @error('description') is-invalid @enderror" 
-              id="description" 
-              name="description" 
-              rows="3">{{ old('description', $cropType->description ?? '') }}</textarea>
-    @error('description')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+
+    <div class="form-group button-crop_type asis">
+        <button type="submit" class="btn btn-primary btn-secundary" style="width: 30%">
+            <i class="fas fa-save"></i> Guardar
+        </button>
+    </div>
 </div>

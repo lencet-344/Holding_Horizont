@@ -18,13 +18,10 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col"><i class="fas fa-id-card"></i> ID</th>
-                                <th scope="col"><i class="fas fa-user-circle"></i> Nombre completo</th>
-                                <th scope="col"><i class="fas fa-user-alt"></i> Edad</th>
-                                <th scope="col"><i class="fas fa-portrait"></i> Genero</th>
-                                <th scope="col"><i class="fas fa-map"></i> Direccion</th>
-                                <th scope="col"><i class="fas fa-phone"></i> Numero de Telefono</th>
-                                <th scope="col"><i class="fas fa-envelope-square"></i> Correo Electronico</th>
-                                <th scope="col"><i class="fas fa-calendar-check"></i> Fecha de Registro</th>
+                                <th scope="col"><i class="fas fa-user-circle"></i> Nombre</th>
+                                <th scope="col"><i class="fas fa-user-circle"></i> Descripcion</th>
+                                <th scope="col"><i class="fas fa-user-circle"></i> Ubicacion</th>
+
                                 <th scope="col"><i class="fas fa-cogs"></i> Acciones</th>
                             </tr>
                         </thead>
