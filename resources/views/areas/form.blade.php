@@ -1,38 +1,28 @@
-{{-- Campo: name (Nombre del Área) --}}
-<div class="mb-3">
-    <label for="name" class="form-label">Nombre del Área</label>
-    <input type="text" 
-           class="form-control @error('name') is-invalid @enderror" 
-           id="name" 
-           name="name" 
-           value="{{ old('name', $area->name ?? '') }}" 
-           required>
-    @error('name')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
-</div>
+<h6 class="heading-small text-muted mb-4">Datos de Area</h6>
+<div class="pl-lg-4 card-body-form">
+    <div class="row container-table">
+        {{-- <div class="col-lg-6"> --}}
+            <div class="form-group">
+                <label class="form-control-label" for="name">Nombre</label>
+                <input type="text" id="name" name="name" class="form-control form-control-alternative input-form"
+                    placeholder="Agregar nombre" value="{{ old('name', $areas->name) }}">
+            </div>
 
-{{-- Campo: farm_id (Relación con la Finca/Farm) --}}
-{{-- ASUNCIÓN: El controlador pasa una variable $farms con todas las fincas --}}
-<div class="mb-3">
-    <label for="farm_id" class="form-label">Finca a la que Pertenece</label>
-    <select class="form-select @error('farm_id') is-invalid @enderror" 
-            id="farm_id" 
-            name="farm_id" 
-            required>
-        <option value="">Seleccione una Finca</option>
-        @foreach ($farms as $farm)
-            <option value="{{ $farm->id }}" 
-                    {{ old('farm_id', $area->farm_id ?? '') == $farm->id ? 'selected' : '' }}>
-                {{ $farm->name }}
-            </option>
-        @endforeach
-    </select>
-    @error('farm_id')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+            <div class="form-group">
+                <label class="form-control-label" for="description">Descripcion</label>
+                <input type="text" id="description" name="description" class="form-control form-control-alternative input-form"
+                    placeholder="Agregar una Descripcion" value="{{ old('description', $areas->description) }}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label" for="location">Ubicacion</label>
+                <input type="text" id="location" name="location" class="form-control form-control-alternative input-form"
+                    placeholder="Agregar una Ubicacion" value="{{ old('location', $areas->location) }}">
+            </div>
+
+    <div class="form-group button-area asis">
+        <button type="submit" class="btn btn-primary btn-secundary" style="width: 30%">
+            <i class="fas fa-save"></i> Guardar
+        </button>
+    </div>
 </div>

@@ -1,30 +1,54 @@
-@extends('layouts.app') 
+@extends('layouts.panel')
+@section('title', 'Area/Show')
 
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h1>Detalle del Área: {{ $area->name }}</h1>
-        </div>
-        <div class="card-body">
-            
-            <p><strong>ID:</strong> {{ $area->id }}</p>
-            <hr>
-            
-            <p><strong>Nombre:</strong> {{ $area->name }}</p>
-            <hr>
-            
-            {{-- ASUNCIÓN: El modelo tiene la relación 'farm()' definida --}}
-            <p><strong>Finca (Farm):</strong> {{ $area->farm->name ?? 'N/A' }}</p>
-            <hr>
-            
-            <p class="text-muted small">Creado: {{ $area->created_at->format('d/m/Y H:i') }}</p>
+    <div class="col-xl-12 order-xl-1 show-con">
+        <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><i class="fas fa-newspaper"></i> Ver Area</h3>
+                    </div>
+                    <div class="col-4 button-show text-right">
+                        <a href="{{ route('areas.index') }}" class="btn btn-sm btn-show btn-primary btn-mostrar"><i class=" "></i>
+                            Volver</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">Información del Estudiante</h6>
+                <div class="pl-lg-4">
+                    <div class="row row-show">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="name"><i class="fas fa-user-circle"></i>
+                                    Nombre </label>
+                                <p>{{ $areas->name }}</p>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>
-        <div class="card-footer">
-            <a href="{{ route('areas.edit', $area) }}" class="btn btn-warning">Editar</a>
-            <a href="{{ route('areas.index') }}" class="btn btn-secondary">Volver al Listado</a>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="description"><i class="fas fa-user-alt"></i>
+                                    Descripcion</label>
+                                <p>{{ $areas->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="location"><i class="fas fa-portrait"></i>
+                                    Ubicacion</label>
+                                <p>{{ $areas->location }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-</div>
 @endsection

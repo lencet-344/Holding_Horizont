@@ -1,18 +1,28 @@
-@extends('layouts.app') 
+@extends('layouts.panel')
+@section('title', 'Area/Update')
 
 @section('content')
-<div class="container">
-    <h1>Editar Área: {{ $area->name }}</h1>
-
-    <form action="{{ route('areas.update', $area) }}" method="POST">
-        @csrf
-        @method('PUT') 
-        
-        {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE y le pasamos la variable $area --}}
-        @include('areas._form', ['area' => $area]) 
-
-        <button type="submit" class="btn btn-warning">Actualizar Área</button>
-        <a href="{{ route('areas.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+    <div class="col-xl-12 order-xl-1">
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><i class="fas fa-plus-circle"></i> Actualizar Area</h3>
+                    </div>
+                    <div class="col-4 text-right button-show">
+                        <a href="{{ route('areas.index') }}" class="btn btn-sm btn-primary btn-show btn-mostrar"><i
+                                class="fas fa-arrow-left"></i>
+                            Volver</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body container-fluid">
+                <form action="{{ route('areas.update', $areas->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    @include('areas.form')
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
