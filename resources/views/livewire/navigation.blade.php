@@ -55,7 +55,8 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-        </li>
+
+       
     </ul>
 
     <!-- Divider -->
@@ -65,6 +66,151 @@
     <!-- Navigation -->
     <ul class="navbar-nav mb-md-3">
 
-        
+
+
+<li class="nav-item {{ Request::route()->named('Agronomic_expenses.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('Agronomic_expenses.index') ? 'active' : '' }}"
+                href="{{ route('Agronomic_expenses.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Gastos Agronómicos
+            </a>
+        </li>
     </ul>
 </div>
+
+<li class="nav-item {{ Request::route()->named('areas.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('areas.index') ? 'active' : '' }}"
+                href="{{ route('areas.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Áreas
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('Crop_types.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('Crop_types.index') ? 'active' : '' }}"
+                href="{{ route('Crop_types.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Tipos de Cultivos
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('crops.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('crops.index') ? 'active' : '' }}"
+                href="{{ route('crops.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Cultivos
+            </a>
+        </li>
+    </ul>
+</div>
+<li class="nav-item {{ Request::route()->named('customers.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('customers.index') ? 'active' : '' }}"
+                href="{{ route('customers.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Clientes
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('employees.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('employees.index') ? 'active' : '' }}"
+                href="{{ route('employees.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Empleados
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('farms.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('farms.index') ? 'active' : '' }}"
+                href="{{ route('farms.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Fincas
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('harvests.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('harvests.index') ? 'active' : '' }}"
+                href="{{ route('harvests.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Cosechas
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('insecticides.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('insecticides.index') ? 'active' : '' }}"
+                href="{{ route('insecticides.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Innsecticidas
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('owners.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('owners.index') ? 'active' : '' }}"
+                href="{{ route('owners.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Propietarios
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('post_harvests.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('post_harvests.index') ? 'active' : '' }}"
+                href="{{ route('post_harvests.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Post Cosecha
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('preparations.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('preparations.index') ? 'active' : '' }}"
+                href="{{ route('preparations.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Preparaciones
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('productions.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('productions.index') ? 'active' : '' }}"
+                href="{{ route('productions.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Producciones
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('property_types.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('property_types.index') ? 'active' : '' }}"
+                href="{{ route('property_types.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Tipos de Propietarios
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('sales.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('sales.index') ? 'active' : '' }}"
+                href="{{ route('sales.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Ventas
+            </a>
+        </li>
+    </ul>
+</div>
+
+<li class="nav-item {{ Request::route()->named('sowings.index') ? 'active' : '' }}">
+            <a class="nav-link {{ Request::route()->named('sowings.index') ? 'active' : '' }}"
+                href="{{ route('sowings.index') }}" wire:navigate>
+                <i class="fas fa-user text-blue"></i> Siembras
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+

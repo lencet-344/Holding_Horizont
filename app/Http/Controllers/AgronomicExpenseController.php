@@ -54,7 +54,7 @@ class AgronomicExpenseController extends Controller
     public function edit(Agronomic_expense $expense)
     {
         // Traemos las siembras para el formulario de edición
-        $sowings = Sowing::all(); 
+        $sowings = Sowing::all();
         return view('agronomic_expenses.edit', compact('expense', 'sowings'));
     }
 
