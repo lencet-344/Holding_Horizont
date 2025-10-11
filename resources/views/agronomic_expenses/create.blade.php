@@ -12,7 +12,7 @@
                     <div class="col-4 text-right">
                         <a href="{{ route('agronomic_expenses.index') }}" class="btn btn-sm btn-index btn-mostrar"><i
                                 class="fas fa-arrow-left"></i>
-                            Volver</a>
+                            Volver</a> 
                     </div>
                 </div>
             </div>

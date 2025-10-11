@@ -8,7 +8,7 @@
                 <div class="card-header border-0">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Gastos Agronomicos</h3>
-                        <a href="{{ route('students.create') }}" class="btn btn-index">
+                        <a href="{{ route('agronomic_expenses.create') }}" class="btn btn-index">
                             <i class="fas fa-plus"></i> Agregar nuevo Gasto agronomico
                         </a>
                     </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card-footer py-4">
                     <nav aria-label="..." class="d-flex flex-wrap justify-content-center justify-content-lg-start">
-                        {{ $students->links() }}
+                        {{ $agronomic_expenses->links() }}
                     </nav>
                 </div>
             </div>

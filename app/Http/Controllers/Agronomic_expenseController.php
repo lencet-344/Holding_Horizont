@@ -6,7 +6,7 @@ use App\Models\Agronomic_expense;
 use App\Models\Sowing; 
 use App\Http\Requests\Agronomic_expenseRequest; // Usando el Form Request
 
-class AgronomicExpenseController extends Controller
+class Agronomic_expenseController extends Controller
 {
     /**
      * Muestra una lista de todos los gastos agronómicos.

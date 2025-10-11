@@ -3,7 +3,7 @@
 use App\Http\Controllers\CarrerController;
 use App\Http\Controllers\ProfileController;
 
-use App\Http\Controllers\AgronomicExpenseController; //2
+use App\Http\Controllers\Agronomic_expenseController; //2
 
 use App\Http\Controllers\AreaController; //3
 
@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::resource('/agronomic_expenses', AgronomicExpenseController::class);
+Route::resource('/agronomic_expenses', Agronomic_expenseController::class);
 Route::resource('/areas', AreaController::class);
 Route::resource('/crop_types', CropTypeController::class);
 Route::resource('/crops', CropController::class);
