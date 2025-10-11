@@ -13,7 +13,7 @@ class InsecticideController extends Controller
      */
     public function index()
     {
-        $insecticides = Insecticide::with('agronomicExpense')->latest()->get(); 
+        $insecticides = Insecticide::with('agronomic_expense')->latest()->get(); 
         return view('insecticides.index', compact('insecticides'));
     }
 

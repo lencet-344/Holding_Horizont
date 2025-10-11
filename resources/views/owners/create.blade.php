@@ -8,7 +8,7 @@
         @csrf
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE. --}}
-        @include('owners._form') 
+        @include('owners.form') 
 
         <button type="submit" class="btn btn-success">Guardar Propietario</button>
         <a href="{{ route('owners.index') }}" class="btn btn-secondary">Cancelar</a>

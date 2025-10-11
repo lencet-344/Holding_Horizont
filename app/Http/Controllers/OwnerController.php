@@ -11,14 +11,14 @@ class OwnerController extends Controller
     {
         $owners = Owner::paginate();
 
-        return view('owner.index', compact('owners'))
+        return view('owners.index', compact('owners'))
             ->with('i', (request()->input('page', 1) - 1) * $owners->perPage());
     }
 
     public function create()
     {
         $owner = new Owner();
-        return view('owner.create', compact('owner'));
+        return view('owners.create', compact('owner'));
     }
 
     public function store(OwnerRequest $request)

@@ -9,7 +9,7 @@
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE. --}}
         {{-- ASUMIMOS que el controlador pasa la variable $areas --}}
-        @include('employees._form') 
+        @include('employees.form') 
 
         <button type="submit" class="btn btn-success">Guardar Empleado</button>
         <a href="{{ route('employees.index') }}" class="btn btn-secondary">Cancelar</a>

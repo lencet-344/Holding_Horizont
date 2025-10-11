@@ -10,17 +10,17 @@
                         <h3 class="mb-0"><i class="fas fa-plus-circle"></i> Actualizar Clientes</h3>
                     </div>
                     <div class="col-4 text-right button-show">
-                        <a href="{{ route('custumers.index') }}" class="btn btn-sm btn-primary btn-show btn-mostrar"><i
+                        <a href="{{ route('customers.index') }}" class="btn btn-sm btn-primary btn-show btn-mostrar"><i
                                 class="fas fa-arrow-left"></i>
                             Volver</a>
                     </div>
                 </div>
             </div>
             <div class="card-body container-fluid">
-                <form action="{{ route('custumers.update', $custumers->id) }}" method="POST">
+                <form action="{{ route('customers.update', $customers->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    @include('custumers.form')
+                    @include('customers.form')
                 </form>
             </div>
         </div>

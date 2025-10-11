@@ -8,7 +8,7 @@
         @csrf
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE. --}}
-        @include('insecticides._form') 
+        @include('insecticides.form') 
 
         <button type="submit" class="btn btn-success">Guardar Insecticida</button>
         <a href="{{ route('insecticides.index') }}" class="btn btn-secondary">Cancelar</a>

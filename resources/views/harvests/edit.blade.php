@@ -9,7 +9,7 @@
         @method('PUT') 
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE y le pasamos la variable $harvest --}}
-        @include('harvests._form', ['harvest' => $harvest]) 
+        @include('harvests.form', ['harvest' => $harvest]) 
 
         <button type="submit" class="btn btn-warning">Actualizar Cosecha</button>
         <a href="{{ route('harvests.index') }}" class="btn btn-secondary">Cancelar</a>

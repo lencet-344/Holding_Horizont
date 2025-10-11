@@ -9,7 +9,7 @@
         @method('PUT') 
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE y le pasamos la variable $employee --}}
-        @include('employees._form', ['employee' => $employee]) 
+        @include('employees.form', ['employee' => $employee]) 
 
         <button type="submit" class="btn btn-warning">Actualizar Empleado</button>
         <a href="{{ route('employees.index') }}" class="btn btn-secondary">Cancelar</a>

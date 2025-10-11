@@ -11,14 +11,14 @@ class Post_harvestController extends Controller
     {
         $Post_harvests = Post_harvest::paginate();
 
-        return view('Post_harvest.index', compact('Post_harvests'))
+        return view('Post_harvests.index', compact('Post_harvests'))
             ->with('i', (request()->input('page', 1) - 1) * $Post_harvests->perPage());
     }
 
     public function create()
     {
         $Post_harvest = new Post_harvest();
-        return view('Post_harvest.create', compact('Post_harvest'));
+        return view('Post_harvests.create', compact('Post_harvest'));
     }
 
     public function store(Post_harvestRequest $request)

@@ -5,19 +5,19 @@
             <div class="form-group">
                 <label class="form-control-label" for="name">Nombre</label>
                 <input type="text" id="name" name="name" class="form-control form-control-alternative input-form"
-                    placeholder="Agregar nombre" value="{{ old('name', $areas->name) }}">
+                    placeholder="Agregar nombre" value="{{ old('name', $area->name) }}">
             </div>
 
             <div class="form-group">
                 <label class="form-control-label" for="description">Descripcion</label>
                 <input type="text" id="description" name="description" class="form-control form-control-alternative input-form"
-                    placeholder="Agregar una Descripcion" value="{{ old('description', $areas->description) }}">
+                    placeholder="Agregar una Descripcion" value="{{ old('description', $area->description) }}">
             </div>
 
             <div class="form-group">
                 <label class="form-control-label" for="location">Ubicacion</label>
                 <input type="text" id="location" name="location" class="form-control form-control-alternative input-form"
-                    placeholder="Agregar una Ubicacion" value="{{ old('location', $areas->location) }}">
+                    placeholder="Agregar una Ubicacion" value="{{ old('location', $area->location) }}">
             </div>
 
     <div class="form-group button-area asis">

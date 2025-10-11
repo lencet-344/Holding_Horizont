@@ -12,10 +12,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::latest()->get(); 
-        return view('customers.index', compact('customers'));
-    }
+        $customers = Customer::paginate();
 
+        return view('customers.index', compact('customers'))
+            ->with('i', (request()->input('page', 1) - 1) * $customers->perPage());
+    }
     /**
      * Muestra el formulario para crear un nuevo cliente.
      */

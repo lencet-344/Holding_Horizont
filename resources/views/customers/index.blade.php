@@ -1,5 +1,5 @@
 @extends('layouts.panel')
-@section('title', 'Custumer')
+@section('title', 'Customer')
 
 @section('content')
     <div class="row">
@@ -8,7 +8,7 @@
                 <div class="card-header border-0">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Estudiantes</h3>
-                        <a href="{{ route('custumers.create') }}" class="btn btn-index">
+                        <a href="{{ route('customers.create') }}" class="btn btn-index">
                             <i class="fas fa-plus"></i> Agregar nuevo Cliente
                         </a>
                     </div>
@@ -29,42 +29,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($custumers as $custumer)
+                            @foreach ($customers as $customer)
                                 <tr>
                                     <td>
-                                        <span class="badge badge-pill badge-primary"> {{ $custumer->id }} </span>
+                                        <span class="badge badge-pill badge-primary"> {{ $customer->id }} </span>
                                     </td>
 
                                     <td>
-                                        {{ $custumer->name }}
+                                        {{ $customer->name }}
                                     </td>
 
                                     <td>
-                                        {{ $custumer->last_name }}
+                                        {{ $customer->last_name }}
                                     </td>
 
                                     <td>
-                                        {{ $custumer->age }}
+                                        {{ $customer->age }}
                                     </td>
 
                                     <td>
-                                        {{ $custumer->gender }}
+                                        {{ $customer->gender }}
                                     </td>
 
                                     <td>
-                                        {{ $custumer->email }}
+                                        {{ $customer->email }}
                                     </td>
 
                                     <td>
-                                        {{ $custumer->telephone }}
+                                        {{ $customer->telephone }}
                                     </td>
 
                                     <td style="white-space: nowrap; display: flex; align-items: center;">
-                                        <a href="{{ route('custumers.show', $custumer) }}" class="btn btn-primary btn-sm btn-mostrar"
+                                        <a href="{{ route('customers.show', $customer) }}" class="btn btn-primary btn-sm btn-mostrar"
                                             style="margin-right: 5px;">
                                             <i class="fas fa-eye"></i> Mostrar
                                         </a>
-                                        <a href="{{ route('custumers.edit', $custumer) }}" class="btn btn-info btn-sm"
+                                        <a href="{{ route('customers.edit', $customer) }}" class="btn btn-info btn-sm"
                                             style="margin-right: 5px;">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="card-footer py-4">
                     <nav aria-label="..." class="d-flex flex-wrap justify-content-center justify-content-lg-start">
-                        {{ $custumers->links() }}
+                        {{ $customers->links() }}
                     </nav>
                 </div>
             </div>

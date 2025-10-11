@@ -13,9 +13,10 @@ class Agronomic_expenseController extends Controller
      */
     public function index()
     {
-        // Trae todos los gastos, cargando la siembra relacionada
-        $expenses = Agronomic_expense::with('sowing')->latest()->get(); 
-        return view('agronomic_expenses.index', compact('expenses'));
+        $agronomic_expenses = Agronomic_expense::paginate();
+
+        return view('agronomic_expenses.index', compact('agronomic_expenses'))
+            ->with('i', (request()->input('page', 1) - 1) * $agronomic_expenses->perPage());
     }
 
     /**
@@ -24,8 +25,8 @@ class Agronomic_expenseController extends Controller
     public function create()
     {
         // Traemos todas las siembras para seleccionar a cuál pertenece el gasto
-        $sowings = Sowing::all();
-        return view('agronomic_expenses.create', compact('sowings'));
+        $agronomic_expenses = Agronomic_expense::all();
+        return view('agronomic_expenses.create', compact('agronomic_expenses'));
     }
 
     /**
@@ -43,7 +44,7 @@ class Agronomic_expenseController extends Controller
     /**
      * Muestra los detalles de un gasto específico.
      */
-    public function show(Agronomic_expense $expense)
+    public function show(Agronomic_expense $agronomic_expenses)
     {
         return view('agronomic_expenses.show', compact('expense'));
     }
@@ -51,20 +52,20 @@ class Agronomic_expenseController extends Controller
     /**
      * Muestra el formulario para editar un gasto.
      */
-    public function edit(Agronomic_expense $expense)
+    public function edit(Agronomic_expense $agronomic_expenses)
     {
         // Traemos las siembras para el formulario de edición
-        $sowings = Sowing::all();
-        return view('agronomic_expenses.edit', compact('expense', 'sowings'));
+        $agronomic_expenses = Agronomic_expense::all();
+        return view('agronomic_expenses.edit', compact('expense', 'agronomic_expenses'));
     }
 
     /**
      * Actualiza un gasto en la base de datos.
      */
-    public function update(Agronomic_expenseRequest $request, Agronomic_expense $expense) // Usamos AgronomicExpenseRequest para validación
+    public function update(Agronomic_expenseRequest $request, Agronomic_expense $agronomic_expenses) // Usamos AgronomicExpenseRequest para validación
     {
         // La validación se hace automáticamente por AgronomicExpenseRequest
-        $expense->update($request->validated());
+        $agronomic_expenses->update($request->validated());
 
         return redirect()->route('agronomic_expenses.index')
                          ->with('success', 'El gasto ha sido actualizado correctamente.');
@@ -73,9 +74,9 @@ class Agronomic_expenseController extends Controller
     /**
      * Elimina un gasto de la base de datos.
      */
-    public function destroy(Agronomic_expense $expense)
+    public function destroy(Agronomic_expense $agronomic_expenses)
     {
-        $expense->delete();
+        $agronomic_expenses->delete();
         return redirect()->route('agronomic_expenses.index')
                          ->with('success', 'El gasto ha sido eliminado del registro.');
     }

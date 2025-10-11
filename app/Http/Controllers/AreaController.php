@@ -11,14 +11,14 @@ class AreaController extends Controller
     {
         $areas = Area::paginate();
 
-        return view('area.index', compact('areas'))
+        return view('areas.index', compact('areas'))
             ->with('i', (request()->input('page', 1) - 1) * $areas->perPage());
     }
 
     public function create()
     {
         $area = new Area();
-        return view('area.create', compact('area'));
+        return view('areas.create', compact('area'));
     }
 
     public function store(AreaRequest $request)

@@ -10,7 +10,7 @@
                         <h3 class="mb-0"><i class="fas fa-newspaper"></i> Ver Clientes</h3>
                     </div>
                     <div class="col-4 button-show text-right">
-                        <a href="{{ route('custumers.index') }}" class="btn btn-sm btn-show btn-primary btn-mostrar"><i class=" "></i>
+                        <a href="{{ route('customers.index') }}" class="btn btn-sm btn-show btn-primary btn-mostrar"><i class=" "></i>
                             Volver</a>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="name"><i class="fas fa-user-circle"></i>
                                     Nombre</label>
-                                <p>{{ $custumers->name }}</p>
+                                <p>{{ $customers->name }}</p>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="last_name"><i class="fas fa-user-alt"></i>
                                     Apellido</label>
-                                <p>{{ $custumers->last_name }}</p>
+                                <p>{{ $customers->last_name }}</p>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="age"><i class="fas fa-portrait"></i>
                                     Edad</label>
-                                <p>{{ $custumers->age }}</p>
+                                <p>{{ $customers->age }}</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="gender"><i class="fas fa-map"></i>
                                     Genero</label>
-                                <p>{{ $custumers->gender }}</p>
+                                <p>{{ $customers->gender }}</p>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="email"><i class="fas fa-phone"></i>
                                 Correo Electronico</label>
-                                <p>{{ $custumers->email }}</p>
+                                <p>{{ $customers->email }}</p>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="telephone"><i class="fas fa-envelope-square"></i>
                                     Telefono</label>
-                                <p>{{ $custumers->telephone }}</p>
+                                <p>{{ $customers->telephone }}</p>
                             </div>
                         </div>
                     </div>

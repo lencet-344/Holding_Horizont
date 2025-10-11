@@ -3,7 +3,7 @@
     <div class="row container-table">
         {{-- <div class="col-lg-6"> --}}
             <div class="form-group">
-                <label class="form-control-label" for="names">Tipos de Gastos</label>
+                <label class="form-control-label" for="expense_type">Tipos de Gastos</label>
                 <input type="text" id="expense_type" name="expense_type" class="form-control form-control-alternative input-form"
                     placeholder="Agregar un Tipo de gasto" value="{{ old('expense_type', $agronomic_expenses->expense_type) }}">
             </div>

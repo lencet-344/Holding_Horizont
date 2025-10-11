@@ -9,7 +9,7 @@
         @method('PUT') 
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE y le pasamos la variable $insecticide --}}
-        @include('insecticides._form', ['insecticide' => $insecticide]) 
+        @include('insecticides.form', ['insecticide' => $insecticide]) 
 
         <button type="submit" class="btn btn-warning">Actualizar Insecticida</button>
         <a href="{{ route('insecticides.index') }}" class="btn btn-secondary">Cancelar</a>

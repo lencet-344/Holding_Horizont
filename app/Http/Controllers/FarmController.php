@@ -11,14 +11,14 @@ class FarmController extends Controller
     {
         $farms = Farm::paginate();
 
-        return view('farm.index', compact('farms'))
+        return view('farms.index', compact('farms'))
             ->with('i', (request()->input('page', 1) - 1) * $farms->perPage());
     }
 
     public function create()
     {
         $farm = new Farm();
-        return view('farm.create', compact('farm'));
+        return view('farms.create', compact('farm'));
     }
 
     public function store(FarmRequest $request)

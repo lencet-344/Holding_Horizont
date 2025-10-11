@@ -9,7 +9,7 @@
         @method('PUT') 
         
         {{-- INCLUIMOS EL FORMULARIO REUTILIZABLE y le pasamos la variable $crop, $areas y $cropTypes --}}
-        @include('crops._form', ['crop' => $crop]) 
+        @include('crops.form', ['crop' => $crop]) 
 
         <button type="submit" class="btn btn-warning">Actualizar Cultivo</button>
         <a href="{{ route('crops.index') }}" class="btn btn-secondary">Cancelar</a>

@@ -8,7 +8,7 @@
                 <div class="card-header border-0">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">Areas</h3>
-                        <a href="{{ route('students.create') }}" class="btn btn-index">
+                        <a href="{{ route('areas.create') }}" class="btn btn-index">
                             <i class="fas fa-plus"></i> Agregar nueva Area
                         </a>
                     </div>
